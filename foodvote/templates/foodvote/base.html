@@ -1,0 +1,24 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Food Voter</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+</head>
+
+<body>
+	<div class="container-fluid" id="header">
+		<h2> Food Voter </h2>
+	</div>
+
+	<br></br>
+	<div class="container">
+	{% block content %}
+	{% endblock %}
+	</div>
+</body>
+
+

@@ -1,0 +1,113 @@
+
+#header{
+	background-color: #AAAAAA;
+	font-family: "Lucida Console";
+	border: 3px black;
+	border-radius: 4px;
+	padding: 15px;
+
+}
+
+#finddiv{
+	background-color: #0088FF;
+	font-family: tahoma;
+	border-radius: 5px;
+	color: white;
+	text-align: center;
+	border: 3px solid black;
+	padding: 30px;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-top: 15px;
+}
+
+#makediv{
+	background-color: #FF2424;
+	font-family: tahoma;
+	border-radius: 5px;
+	color: white;
+	text-align: center;
+	border: 3px solid black;
+	padding: 30px;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-top: 15px;
+
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+#restaurant{
+	border: 1px solid black;
+	background-color: #ABA2A2;
+	margin: 10px;
+}
+
+.post-form textarea, .post-form input {
+	width: 100%;
+}
+
+#id_search, #id_location, #id_name{
+	width: 100%;
+}
+
+#spacing{
+	padding: 30px
+}
+
+.restlist{
+	border: 1px black;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.restvote{
+	padding: 20px;
+	margin-top:10px;
+	margin-bottom:10px;
+	background-color: #C1C9FF;
+	border: 3px solid black;
+
+}
+
+.resttitle{
+	font-weight: bold;
+	font-size: 22px;
+	color: #2A1616;
+	padding-right: 30px;
+	font-variant: small-caps;
+}
+
+.restval{
+	font-size: 14px;
+	font-variant: small-caps;
+	padding-left: 20px;
+}
+
+.restimg{
+	border: 2px solid black;
+	border-radius: 10px;
+	float: right;
+}
+
+.desc{
+	font-weight: bold;
+	font-size: 16px;
+	font-variant: small-caps;
+}
+
+.spacing{
+	padding-top: 10px;
+}
+
+.group_page_title{
+	font-weight: bold;
+	font-size: 28px;
+	color: #2A1616;
+	padding-right: 30px;
+	font-variant: small-caps;
+	font-style: oblique;
+}
+

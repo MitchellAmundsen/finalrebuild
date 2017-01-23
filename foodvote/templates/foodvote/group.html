@@ -1,0 +1,23 @@
+{% extends 'foodvote/base.html' %}
+
+{% block content %}
+	<p class='group_page_title'>{{group.name}}'s Group Page</p>
+	<br></br>	
+	<form method="post">
+	{% csrf_token %}
+	{% for restaurant in restaurants %}
+		<div class = 'container, restvote'>
+			<a class='resttitle' href='{{restaurant.url}}'>{{restaurant.name}}</a>
+			<a href='{{restaurant.url}}'><img class='restimg' src='{{restaurant.img}}'/></a>
+			<br></br>
+			<div class='desc'> Address: </div><div class='restval'>{{restaurant.address}}</div>
+			<div class='desc'> Location: </div><div class='restval'>{{restaurant.location}}</div>
+			<div class='spacing'></div>
+			<img src='{{restaurant.rating_img}}'/>
+			<br></br>
+			<input type='checkbox' name='vote' value='{{restaurant.id}}'>
+		</div>
+	{% endfor %}
+	<button type='submit' class='save btn btn-default'>Submit</button> 
+	</form>
+{% endblock %}

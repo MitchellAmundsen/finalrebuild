@@ -10,6 +10,7 @@ class Group(models.Model):
 	name = models.TextField()
 	end_date = models.DateTimeField()
 	create_date = models.DateTimeField(default=timezone.now)
+	search = models.TextField()
 	
 class User_Group(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -19,7 +20,12 @@ class Restaurant(models.Model):
 	name = models.TextField()
 	address = models.TextField()
 	rating = models.IntegerField(default=0)
-	group = models.TextField(default='N/A')
+	rating_img = models.TextField()
+	location = models.TextField()
+	img = models.TextField(default='')
+	url = models.TextField()
+	
+
 
 class Restaurant_Group(models.Model):
 	restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
