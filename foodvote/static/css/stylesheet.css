@@ -111,3 +111,13 @@ a:hover{
 	font-style: oblique;
 }
 
+#logout{
+	font-size: 16px;
+	font-family: "Lucida Console";
+	position: absolute;
+	padding: 10px;
+	padding-right: 20px;
+	top: 0px;
+	right: 0px;
+}
+

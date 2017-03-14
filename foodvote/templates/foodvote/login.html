@@ -1,0 +1,18 @@
+{% extends 'foodvote/base.html' %}
+
+{% block content %}
+
+{% if form.errors %} 
+<p>Your username and password didn't match. Please try again.</p> 
+{% endif %}
+
+  <h2>Login</h2>
+  <br></br>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br></br>
+    <button type="submit">Login</button>
+  </form>
+
+{% endblock %}
