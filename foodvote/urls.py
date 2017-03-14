@@ -7,6 +7,7 @@ urlpatterns = [
 	url(r'^group_page/(?P<pk>\d+)/$', views.group_page, name='group_page'),
 	url(r'^find$', views.find_group, name='find'),
 	url(r'^group_list/(?P<groupterm>\S+)/$', views.group_list, name='group_list'),
+	url(r'^result/(?P<pk>\d+)/$', views.get_results, name='result'),
 ]
 
 

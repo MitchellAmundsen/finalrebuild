@@ -1,9 +1,6 @@
 {% extends 'foodvote/base.html' %}
 
 {% block content %}
-	<p class='group_page_title'>{{group.name}}'s Group Page</p>
-	<br></br>	
-	<form method="post">
 	{% csrf_token %}
 	{% for group in groups %}
 		<div class = 'container, restvote'>
@@ -14,6 +11,4 @@
 			<div class='spacing'></div>
 		</div>
 	{% endfor %}
-	<button type='submit' class='save btn btn-default'>Choose</button>
-	</form>
 {% endblock %}

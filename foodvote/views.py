@@ -5,8 +5,10 @@ import io, json
 from yelp.client import Client
 from yelp.oauth1_authenticator import Oauth1Authenticator
 from django.contrib.auth.decorators import login_required
+from ratelimit.decorators import ratelimit
 
 # returns the homepage
+@ratelimit(key='ip', rate='5/m', block=True)
 @login_required(login_url='/login/')
 def home(request):
 	return render(request, 'foodvote/home.html')
@@ -27,7 +29,7 @@ def create_restaurant(searchterm, location, group, request):
 
 	params = {
 		'term': searchterm,
-		'limit': 10
+		'limit': 5
 	}
 	
 	response = client.search(location, **params)
@@ -46,6 +48,8 @@ def create_restaurant(searchterm, location, group, request):
 	return businesses
 
 # makes a new group (renders form)
+@ratelimit(key='ip', rate='5/m', block=True)
+@login_required(login_url='/login/')
 def create_group(request):
 	if request.method == 'POST':
 		form = SearchForm(request.POST)
@@ -68,39 +72,74 @@ def create_group(request):
 	return render(request, 'foodvote/new_group.html', {'form': form})
 
 # renders the list of restaurants in the group page
+@ratelimit(key='ip', rate='5/m', block=True)
+@login_required(login_url='/login/')
 def group_page(request, pk):
 	currentgroup = get_object_or_404(Group, pk=pk)
+	if request.method == 'POST':
+		votes = request.POST.getlist('vote')
+		current_user_group = create_user_group(currentgroup, request)
+		for vote in votes:
+			newVote = Vote()
+			newVote.user_group = current_user_group
+
+			rest_group = get_object_or_404(Restaurant_Group, pk=vote)
+			newVote.restaurant_group = rest_group
+			newVote.upvote = True
+			newVote.save()
+		return redirect('result', pk=pk)
 	# need to get user to check if user has voted on group then return appropriate page
-	#votes = get_object_or_404(User_Group, group_id=pk, user_id=current_user)
-	restaurant_groups = Restaurant_Group.objects.filter(group=currentgroup.id)
-	restaurants = []
-	for rg in restaurant_groups:
-		restaurants.append(rg.restaurant)
-	return render(request, 'foodvote/group.html', {'group': currentgroup, 'restaurants': restaurants})
+	else:
+		restaurant_groups = Restaurant_Group.objects.filter(group=currentgroup.id)
+		restaurants = []
+		for rg in restaurant_groups:
+			restaurants.append(rg.restaurant)
+	return render(request, 'foodvote/group.html', {'group': currentgroup,'rg': restaurant_groups})
 
 # creates user
-def create_user_group(group):
+def create_user_group(groupinput, request):
 	user_group = User_Group()
-	user_group.user = current #add current user
-	user_group.group = group
+
+	user = request.user._wrapped if hasattr(request.user, '_wrapped') else request.user
+	user_group.user = user #add current user
+
+	user_group.group = groupinput
 	user_group.save()
+	return user_group
 
 # renders form then passes form text to 'group list'
+@ratelimit(key='ip', rate='5/m', block=True)
+@login_required(login_url='/login/')
 def find_group(request):
 	if request.method == 'POST':
 		form = GroupForm(request.POST)
 		if form.is_valid():
 			data = form.cleaned_data
 			groupval = data['group']
-			print(groupval)
 			return redirect('group_list', groupterm=groupval)
 	else:
 		form = GroupForm()
 	return render(request, 'foodvote/find_group.html', {'form': form})
 
+
+@ratelimit(key='ip', rate='5/m', block=True)
+@login_required(login_url='/login/')
 def group_list(request, groupterm):
 	groups = Group.objects.filter(name=groupterm)
 	return render(request, 'foodvote/group_list.html', {'groups': groups})
 
+@ratelimit(key='ip', rate='5/m', block=True)
+@login_required(login_url='/login/')
+def get_results(request, pk):
+	group = get_object_or_404(Group, pk=pk)
+	rgs = Restaurant_Group.objects.filter(group=pk)
+	leading = 'none'
+	leadCount = 0
+	for rg in rgs:
+		votes = Vote.objects.filter(restaurant_group=rg, upvote=True)
+		if(votes.count() > leadCount):
+			leadCount = votes.count()
+			leading = rg
+	return render(request, 'foodvote/result.html', {'rg': leading, 'count': leadCount})
 
 

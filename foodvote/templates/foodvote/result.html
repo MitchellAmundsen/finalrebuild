@@ -1,0 +1,17 @@
+{% extends 'foodvote/base.html' %}
+
+{% block content %}
+
+<h2>Results for group "{{rg.group.name}}"</h2>
+<br></br>
+<div class='container, restvote'>
+	<h3><a src='{{rg.restaurant.url}}'>Winner:   {{rg.restaurant.name}}</a></h3>
+	<br></br>
+	<div class='desc'> Address: </div><div class='restval'>{{rg.restaurant.address}}</div>
+	<a href='{{rg.restaurant.url}}'><img class='restimg' src='{{rg.restaurant.img}}'/></a>
+	<br></br>
+	<img src='{{rg.restaurant.rating_img}}'/>
+	<h4> Vote Count: {{count}} </h4>
+</div>
+
+{% endblock %}
