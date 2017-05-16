@@ -6,6 +6,9 @@ from yelp.client import Client
 from yelp.oauth1_authenticator import Oauth1Authenticator
 from django.contrib.auth.decorators import login_required
 from ratelimit.decorators import ratelimit
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import UserSerializer, GroupSerializer, RestaurantSerializer, VoteSerializer
 
 # returns the homepage
 @ratelimit(key='ip', rate='5/m', block=True)
@@ -142,4 +145,62 @@ def get_results(request, pk):
 			leading = rg
 	return render(request, 'foodvote/result.html', {'rg': leading, 'count': leadCount})
 
+
+@ratelimit(key='ip', rate='10/m', block=True)
+@api_view(['GET', 'POST'])
+def api_group(request, format=None):
+	if request.method == 'GET':
+		groups = Group.objects.all()
+		serializer = GroupSerializer(groups, many=True)
+		return Response(serializer.data)
+	elif request.method == 'POST':
+		serializer = GroupSerializer(data=request.data)
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data, status=status.HTTP_201_CREATED)
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@ratelimit(key='ip', rate='10/m', block=True)
+@api_view(['GET', 'POST'])
+def api_restaurant(request, format=None):
+	if request.method == 'GET':
+		rests = Restaurant.objects.all()
+		serializer = RestaurantSerializer(rests, many=True)
+		return Response(serializer.data)
+	elif request.method == 'POST':
+		serializer = RestaurantSerializer(data=request.data)
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data, status=status.HTTP_201_CREATED)
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@ratelimit(key='ip', rate='10/m', block=True)
+@api_view(['GET', 'POST'])
+def api_vote(request, pk, format=None):
+	if request.method == 'GET':
+		users = Vote.objects.get(user_group=pk)
+		serializer = VoteSerializer(users, many=True)
+		return Response(serializer.data)
+	elif request.method == 'POST':
+		serializer = VoteSerializer(data=request.data)
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data, status=status.HTTP_201_CREATED)
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@ratelimit(key='ip', rate='10/m', block=True)
+@api_view(['GET', 'POST'])
+def api_user(request, format=None):
+	if request.method == 'GET':
+		users = User.objects.all()
+		serializer = UserSerializer(users, many=True)
+		return Response(serializer.data)
+	elif request.method == 'POST':
+		serializer = UserSerializer(data=request.data)
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data, status=status.HTTP_201_CREATED)
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+	
 
