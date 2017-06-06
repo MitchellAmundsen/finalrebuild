@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.home, name='home'),
+	url(r'^login/$', views.app_login, name='login'),
+	url(r'^registration/$', views.app_registration, name='registration'),
 	url(r'^create$', views.create_group, name='create'),
 	url(r'^group_page/(?P<pk>\d+)/$', views.group_page, name='group_page'),
 	url(r'^find$', views.find_group, name='find'),

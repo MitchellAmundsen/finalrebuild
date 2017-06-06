@@ -1,0 +1,252 @@
+[05/Jun/2017 19:00:25] "GET / HTTP/1.1" 302 0
+[05/Jun/2017 19:00:25] "GET /login/?next=/ HTTP/1.1" 200 1560
+[05/Jun/2017 19:00:25] "GET /static/css/login.css HTTP/1.1" 404 1661
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 05, 2017 - 19:00:16
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[05/Jun/2017 19:01:12] "GET /registration HTTP/1.1" 301 0
+[05/Jun/2017 19:01:13] "GET /registration/ HTTP/1.1" 200 1889
+[05/Jun/2017 19:01:13] "GET /static/css/login.css HTTP/1.1" 404 1661
+[05/Jun/2017 19:03:17] "GET /registration/ HTTP/1.1" 200 1983
+[05/Jun/2017 19:03:17] "GET /static/css/login.css HTTP/1.1" 404 1661
+Internal Server Error: /registration
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 123, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/common.py", line 62, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/common.py", line 100, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to amundm.info344.com:8888/registration/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+[05/Jun/2017 19:03:45] "POST /registration HTTP/1.1" 500 60404
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 05, 2017 - 19:01:06
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+Internal Server Error: /registration
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 123, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/common.py", line 62, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/common.py", line 100, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to amundm.info344.com:8888/registration/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+[05/Jun/2017 19:07:16] "POST /registration HTTP/1.1" 500 60404
+[05/Jun/2017 19:07:23] "GET / HTTP/1.1" 302 0
+[05/Jun/2017 19:07:24] "GET /login/?next=/ HTTP/1.1" 200 1560
+[05/Jun/2017 19:07:24] "GET /static/css/login.css HTTP/1.1" 404 1661
+[05/Jun/2017 19:07:26] "GET /registration/ HTTP/1.1" 200 1984
+[05/Jun/2017 19:07:26] "GET /static/css/login.css HTTP/1.1" 404 1661
+Internal Server Error: /registration/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/finalrebuild/foodvote/views.py", line 47, in app_registration
+    u = User.objects.get(username = usernameIn)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/query.py", line 387, in get
+    self.model._meta.object_name
+DoesNotExist: User matching query does not exist.
+[05/Jun/2017 19:07:42] "POST /registration/ HTTP/1.1" 500 71970
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 05, 2017 - 19:07:12
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 05, 2017 - 19:12:33
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+Internal Server Error: /registration/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/finalrebuild/foodvote/views.py", line 47, in app_registration
+    u = User.objects.get(username = usernameIn).exists()
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/query.py", line 387, in get
+    self.model._meta.object_name
+DoesNotExist: User matching query does not exist.
+[05/Jun/2017 19:17:40] "POST /registration/ HTTP/1.1" 500 71999
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 05, 2017 - 19:17:19
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[05/Jun/2017 19:24:02] "POST /registration/ HTTP/1.1" 200 752
+Internal Server Error: /registration/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/finalrebuild/foodvote/views.py", line 52, in app_registration
+    user = User.objects.create_user(usernameIn, emailIn)
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/auth/models.py", line 154, in create_user
+    return self._create_user(username, email, password, **extra_fields)
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/auth/models.py", line 144, in _create_user
+    raise ValueError('The given username must be set')
+ValueError: The given username must be set
+[05/Jun/2017 19:24:06] "POST /registration/ HTTP/1.1" 500 71577
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 05, 2017 - 19:22:34
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[05/Jun/2017 19:25:49] "GET /registration/ HTTP/1.1" 200 1984
+Internal Server Error: /registration/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/finalrebuild/foodvote/views.py", line 52, in app_registration
+    user = User.objects.create_user(usernameIn, emailIn)
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/auth/models.py", line 154, in create_user
+    return self._create_user(username, email, password, **extra_fields)
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/auth/models.py", line 148, in _create_user
+    user.save(using=self._db)
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/auth/base_user.py", line 74, in save
+    super(AbstractBaseUser, self).save(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/base.py", line 708, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/base.py", line 736, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/base.py", line 820, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/base.py", line 859, in _do_insert
+    using=using, raw=raw)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/query.py", line 1039, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/sql/compiler.py", line 1060, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py", line 112, in execute
+    return self.cursor.execute(query, args)
+  File "/usr/local/lib/python2.7/dist-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python2.7/dist-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (1062, "Duplicate entry 'yamish' for key 'username'")
+[05/Jun/2017 19:26:02] "POST /registration/ HTTP/1.1" 500 147412
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 05, 2017 - 19:25:47
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[05/Jun/2017 19:46:04] "GET /registration/ HTTP/1.1" 200 1984
+[05/Jun/2017 19:46:26] "POST /registration/ HTTP/1.1" 200 2055
+[05/Jun/2017 19:46:27] "GET /static/css/login.css HTTP/1.1" 404 1661
+[05/Jun/2017 19:46:50] "POST /registration/ HTTP/1.1" 302 0
+[05/Jun/2017 19:46:50] "GET /login/ HTTP/1.1" 200 1560
+[05/Jun/2017 19:46:51] "GET /static/css/login.css HTTP/1.1" 404 1661
+[05/Jun/2017 19:47:02] "GET /registration/ HTTP/1.1" 200 1984
+[05/Jun/2017 19:47:02] "GET /static/css/login.css HTTP/1.1" 404 1661
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 05, 2017 - 19:45:59
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[05/Jun/2017 19:48:19] "GET /registration/ HTTP/1.1" 200 2003
+[05/Jun/2017 19:48:19] "GET /static/css/login.css HTTP/1.1" 404 1661
+[05/Jun/2017 19:49:40] "GET /registration/ HTTP/1.1" 200 2051
+[05/Jun/2017 19:49:41] "GET /static/css/login.css HTTP/1.1" 404 1661
+[05/Jun/2017 19:49:43] "GET /login/ HTTP/1.1" 200 1560
+[05/Jun/2017 19:49:43] "GET /static/css/login.css HTTP/1.1" 404 1661
+Internal Server Error: /login
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 123, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/common.py", line 62, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/common.py", line 100, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to amundm.info344.com:8888/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+[05/Jun/2017 19:49:59] "POST /login HTTP/1.1" 500 60004
+Internal Server Error: /login
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 123, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/common.py", line 62, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/common.py", line 100, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to amundm.info344.com:8888/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+[05/Jun/2017 19:50:25] "POST /login HTTP/1.1" 500 60004
+[05/Jun/2017 19:50:35] "GET /static/css/login.css HTTP/1.1" 404 1661
+[05/Jun/2017 19:50:44] "GET /login/ HTTP/1.1" 200 1561
+[05/Jun/2017 19:50:44] "GET /static/css/login.css HTTP/1.1" 404 1661
+[05/Jun/2017 19:50:57] "POST /login/ HTTP/1.1" 200 823
+Not Found: /login/find
+[05/Jun/2017 21:14:09] "GET /login/find HTTP/1.1" 404 4345
+[05/Jun/2017 21:14:21] "GET / HTTP/1.1" 200 823
+[05/Jun/2017 21:14:21] "GET /static/css/stylesheet.css HTTP/1.1" 200 1865
+[05/Jun/2017 21:14:23] "GET /find HTTP/1.1" 200 838
+[05/Jun/2017 21:14:25] "GET / HTTP/1.1" 200 823
+[05/Jun/2017 21:14:32] "GET /logout/ HTTP/1.1" 200 578
+[05/Jun/2017 21:14:35] "GET /login/ HTTP/1.1" 200 1561
+[05/Jun/2017 21:14:35] "GET /static/css/login.css HTTP/1.1" 404 1661
+[05/Jun/2017 21:14:46] "POST /login/ HTTP/1.1" 200 823
+Not Found: /login/find
+[05/Jun/2017 21:14:54] "GET /login/find HTTP/1.1" 404 4345
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 05, 2017 - 19:47:43
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[05/Jun/2017 21:15:35] "GET / HTTP/1.1" 200 823
+[05/Jun/2017 21:15:37] "GET /logout/ HTTP/1.1" 200 578
+[05/Jun/2017 21:15:39] "GET /login/ HTTP/1.1" 200 1561
+[05/Jun/2017 21:15:39] "GET /static/css/login.css HTTP/1.1" 404 1661
+[05/Jun/2017 21:15:43] "POST /login/ HTTP/1.1" 302 0
+[05/Jun/2017 21:15:44] "GET / HTTP/1.1" 200 823
+[05/Jun/2017 21:15:46] "GET /find HTTP/1.1" 200 838
+[05/Jun/2017 21:15:53] "POST /find HTTP/1.1" 302 0
+[05/Jun/2017 21:15:53] "GET /group_list/test/ HTTP/1.1" 200 909
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 05, 2017 - 21:15:32
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+Not Found: /http:/testp3.pospr.waw.pl/testproxy.php
+[05/Jun/2017 21:48:29] "GET http://testp3.pospr.waw.pl/testproxy.php HTTP/1.1" 404 1723

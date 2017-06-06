@@ -9,12 +9,55 @@ from ratelimit.decorators import ratelimit
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer, GroupSerializer, RestaurantSerializer, VoteSerializer
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 # returns the homepage
 @ratelimit(key='ip', rate='5/m', block=True)
 @login_required(login_url='/login/')
 def home(request):
 	return render(request, 'foodvote/home.html')
+
+
+@ratelimit(key='ip', rate='5/m', block=True)
+def app_login(request):
+	error = None
+	if request.method == 'POST':
+		fields = request.POST
+		usernameIn = fields.get("usernameInput")
+		passwordIn = fields.get("passwordInput")
+		user = authenticate(username=usernameIn, password=passwordIn)
+		if user is not None:
+			login(request, user)
+			return redirect('home')
+		else:
+			print("auth unsuccessful")
+			error = "Your username of password is incorrect"
+	return render(request, 'registration/login.html', {'error' : error})
+
+def app_registration(request):
+	error = None
+	if request.method == 'POST':
+		fields = request.POST
+		usernameIn = fields.get("usernameInput")
+		passwordIn = fields.get("passwordInput")
+		passwordIn2 = fields.get("passwordInput2")
+		emailIn = fields.get("emailInput")
+		qs = User.objects.all()
+		u = qs.filter(username = usernameIn).exists()
+		u2 = qs.filter(email = emailIn).exists()
+		if u or u2:
+			error = "Username or email has already been used"
+		else:	
+			if passwordIn == passwordIn2:
+				user = User.objects.create_user(usernameIn, emailIn)
+				user.set_password(passwordIn)
+				user.save()
+ 				return redirect('login')
+			else:
+				error = "Passwords do not match"
+		
+	return render(request, 'registration/registration.html', {'error' : error})
 
 # creates an instance of the given resturant and group (can be used later to elimante restaurant redundancy)
 def create_restaurant_group(restaurant, group):
@@ -171,7 +214,7 @@ def api_restaurant(request, format=None):
 		serializer = RestaurantSerializer(data=request.data)
 		if serializer.is_valid():
 			serializer.save()
-			return Response(serializer.data, status=status.HTTP_201_CREATED)
+			return Response(serializer.data)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @ratelimit(key='ip', rate='10/m', block=True)
@@ -185,7 +228,7 @@ def api_vote(request, pk, format=None):
 		serializer = VoteSerializer(data=request.data)
 		if serializer.is_valid():
 			serializer.save()
-			return Response(serializer.data, status=status.HTTP_201_CREATED)
+			return Response(serializer.data)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @ratelimit(key='ip', rate='10/m', block=True)
@@ -199,7 +242,7 @@ def api_user(request, format=None):
 		serializer = UserSerializer(data=request.data)
 		if serializer.is_valid():
 			serializer.save()
-			return Response(serializer.data, status=status.HTTP_201_CREATED)
+			return Response(serializer.data)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 	

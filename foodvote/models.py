@@ -11,6 +11,7 @@ class Group(models.Model):
 	end_date = models.DateTimeField()
 	create_date = models.DateTimeField(default=timezone.now)
 	search = models.TextField()
+	hash_field = models.TextField(primary_key=True)
 	
 class User_Group(models.Model):
 	user = models.ForeignKey('auth.User', on_delete=models.CASCADE)

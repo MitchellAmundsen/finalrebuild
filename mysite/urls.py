@@ -21,6 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('foodvote.urls')),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    url(r'^login/$', auth_views.login, {'template_name': 'foodvote/login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'foodvote/logout.html'}, name='logout'),
 ]

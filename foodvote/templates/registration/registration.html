@@ -1,0 +1,46 @@
+
+<html>
+	<head>
+	{% load static %}
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link href="{% static 'css/login.css' %}" rel="stylesheet" type="text/css" />
+<div class="panel panel-default">
+	</head>
+			<div class="panel-body">
+				<h1>Registration</h1>
+				<div class="loginHolder">
+					<form id="loginForm" method="POST" action="/registration/">
+            {% csrf_token %}
+						<div class="form-group">
+							<div class="input-group">
+								<label class="input-group-addon" for="usernameInput">Username: </label>
+								<input class="form-control" id="usernameInput" type="text" autocomplete="off" placeholder="Username" name="usernameInput"/>
+							</div>
+							<div class="input-group">
+								<label class="input-group-addon" for="emailInput">Email: </label>
+								<input class="form-control" id="emailInput" type="text" autocomplete="off" placeholder="Email" name="emailInput"/>
+							</div>
+							<div class="input-group">
+								<label class="input-group-addon" for="passwordInput">Password: </label>
+								<input class="form-control" id="passwordInput" type="password" placeholder="Password" name="passwordInput"/>
+							</div>
+							<div class="input-group">
+								<label class="input-group-addon" for="passwordInput2">Password Again: </label>
+								<input class="form-control" id="passwordInput" type="password" placeholder="Password" name="passwordInput2"/>
+							</div>
+						</div>
+					</form>
+					<div class="buttonHolder">
+						<button class="btn btn-primary" type="submit" form="loginForm">Sign Up</button>
+						<!-- <button class="btn btn-default" type="button">Register</button> -->
+					</div>
+				<br/>
+				{% if error %}
+				<p id="errorauth">{{error}}</p>
+				{% endif %}
+				<br/>
+				</div>
+				<h4><a href='/login/'>Back to login</a></h4>
+			</div>
+    </div>
