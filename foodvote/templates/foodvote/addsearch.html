@@ -1,0 +1,14 @@
+
+{% extends 'foodvote/base.html' %}
+
+{% block content %}
+	<p class='group_page_title'>{{group.name}}'s Group Page</p>
+	<br></br>	
+	<form method="post">
+	{% csrf_token %}
+	<input type='hidden' name='group' value='{{group.id}}'>
+	<label for='search'>Search Term: </label>
+	<input name='search' placeholder='Search Term'></input>
+	<button type='submit' class='save btn btn-default'>Submit</button> 
+	</form>
+{% endblock %}

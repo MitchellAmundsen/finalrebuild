@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from foodvote.forms import SearchForm, GroupForm 
 from .models import User, Group, User_Group, Restaurant, Restaurant_Group, Vote
-import io, json
+import io, json, os, hashlib
 from yelp.client import Client
 from yelp.oauth1_authenticator import Oauth1Authenticator
 from django.contrib.auth.decorators import login_required
@@ -48,23 +48,26 @@ def app_registration(request):
 		u2 = qs.filter(email = emailIn).exists()
 		if u or u2:
 			error = "Username or email has already been used"
-		else:	
+		else:
 			if passwordIn == passwordIn2:
 				user = User.objects.create_user(usernameIn, emailIn)
 				user.set_password(passwordIn)
 				user.save()
- 				return redirect('login')
+				return redirect('login')
 			else:
 				error = "Passwords do not match"
 		
 	return render(request, 'registration/registration.html', {'error' : error})
 
-# creates an instance of the given resturant and group (can be used later to elimante restaurant redundancy)
-def create_restaurant_group(restaurant, group):
+# creates an instance of the given resturant and group (can be used later to elimante restaurant redudcreate_restaurant_group(restaurant, group):
+def create_restaurant_group(restaurant, group, hashtext):
 	restaurant_group = Restaurant_Group()
 	restaurant_group.restaurant = restaurant
 	restaurant_group.group = group
+	restaurant_group.hashfield = hashtext
+	restaurant_group.keep = False
 	restaurant_group.save()
+	return restaurant_group
 
 # creares 10 restaurants for the given search term/location
 def create_restaurant(searchterm, location, group, request):
@@ -79,18 +82,26 @@ def create_restaurant(searchterm, location, group, request):
 	}
 	
 	response = client.search(location, **params)
-	businesses = response.businesses
+	businesses = []
+	randomhash = os.urandom(4).encode('hex')	
 	for business in response.businesses:
-		restaurant = Restaurant()
-		restaurant.name = business.name
-		restaurant.rating = business.rating
-		restaurant.address = business.location.address[0]
-		restaurant.rating_img = business.rating_img_url
-		restaurant.location = business.location.display_address
-		restaurant.img = business.image_url
-		restaurant.url = business.url
-		restaurant.save()
-		create_restaurant_group(restaurant, group)
+		prehash = business.name + business.location.address[0]
+		hashstring = hashlib.md5(prehash.encode())
+		restaurant = None
+		if Restaurant.objects.all().filter(hash_field=hashstring).exists():
+			restaurant = savedrests
+		else:
+			restaurant = Restaurant()
+			restaurant.name = business.name
+			restaurant.rating = business.rating
+			restaurant.address = business.location.address[0]
+			restaurant.rating_img = business.rating_img_url
+			restaurant.location = business.location.display_address
+			restaurant.img = business.image_url
+			restaurant.url = business.url
+			restaurant.hashtext = hashstring
+			restaurant.save()
+		businesses.append(create_restaurant_group(restaurant, group, randomhash))
 	return businesses
 
 # makes a new group (renders form)
@@ -103,16 +114,15 @@ def create_group(request):
 			data = form.cleaned_data
 			search = data['search']
 			name = data['name']
+			current_user = request.user.id
 			NewGroup = Group()
 			NewGroup.name = data['name']
 			NewGroup.end_date = data['date']
-			NewGroup.search = data['search']	
+			NewGroup.search = data['search']
+			NewGroup.create_by_id = current_user
 			NewGroup.save()
-			create_restaurant(search, data['location'], NewGroup, request)
-			#need to figure out how to add users for each group
-			#return group_page(NewGroup, request)
-			return redirect('group_page', pk=NewGroup.pk)
-			#every reload resends request and makes another group
+			businesses = create_restaurant(search, data['location'], NewGroup, request)
+			return render(request, 'foodvote/addrest.html', {'rg': businesses, 'group': NewGroup})
 	else:
 		form=SearchForm()
 	return render(request, 'foodvote/new_group.html', {'form': form})
@@ -141,6 +151,42 @@ def group_page(request, pk):
 		for rg in restaurant_groups:
 			restaurants.append(rg.restaurant)
 	return render(request, 'foodvote/group.html', {'group': currentgroup,'rg': restaurant_groups})
+
+
+@ratelimit(key='ip', rate='5/m', block=True)
+@login_required(login_url='/login/')
+def add_rest(request, pk):
+	if request.method == 'POST':
+		fields = request.POST
+		searchterm = fields.get("search")
+		groupterm = fields.get("group")
+		print(groupterm)
+		group = Group.objects.get(pk=groupterm)
+		
+		location = group.location
+		businesses = create_restaurant(searchterm, location, group, request)
+		return render(request, 'foodvote/addrest.html', {'rg': businesses, 'group': group})
+	else:
+		group = Group.objects.get(pk=pk)
+		return render(request, 'foodvote/addsearch.html', {'group': group})
+
+@ratelimit(key='ip', rate='5/m', block=True)
+@login_required(login_url='/login/')
+def add_chose(request):
+	if request.method == 'POST':
+		votes = request.POST.getlist('vote')
+		group_key = request.POST.get('key')
+		for vote in votes:
+			rest_group = Restaurant_Group.objects.get(pk=vote)
+			rest_group.keep = True
+			rest_group.save()
+		group = Group.objects.get(pk=group_key)
+		rgroup_list = Restaurant_Group.objects.filter(group_id=group.id)
+		for rgroup in rgroup_list:
+			if rgroup.keep is False:
+				rgroup.delete()
+	return redirect('group_page', pk=group_key)
+	
 
 # creates user
 def create_user_group(groupinput, request):

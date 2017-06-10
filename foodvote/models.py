@@ -1,20 +1,18 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
-
-class User(models.Model):
-	fname = models.TextField()
-	lname = models.TextField()
 
 class Group(models.Model):
 	name = models.TextField()
 	end_date = models.DateTimeField()
 	create_date = models.DateTimeField(default=timezone.now)
-	search = models.TextField()
-	hash_field = models.TextField(primary_key=True)
+	hash_field = models.TextField()
+	create_by = models.ForeignKey(User, on_delete=models.CASCADE)
+	location = models.TextField(default='seattle')
 	
 class User_Group(models.Model):
-	user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	group = models.ForeignKey(Group, on_delete=models.CASCADE)
 
 class Restaurant(models.Model):
@@ -25,12 +23,14 @@ class Restaurant(models.Model):
 	location = models.TextField()
 	img = models.TextField(default='')
 	url = models.TextField()
-	
+	hash_field = models.TextField()
 
 
 class Restaurant_Group(models.Model):
 	restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 	group = models.ForeignKey(Group, on_delete=models.CASCADE)
+	hash_field = models.TextField()
+	keep = models.BooleanField(default=False)
 
 class Vote(models.Model):
 	restaurant_group = models.ForeignKey(Restaurant_Group, on_delete=models.CASCADE)

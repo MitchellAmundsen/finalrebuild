@@ -1,12 +1,13 @@
+
 {% extends 'foodvote/base.html' %}
 
 {% block content %}
-	<p class='group_page_title'>{{group.name}}'s Group Page</p>
+	<p class='group_page_title'>{{group.name}}'s Add Restaurant's Page</p>
+	<h4> Check the following restaurants you would like to add to the vote </h4>
 	<br></br>	
-	<a href='/add_rest/{{group.id}}'>Add Restaurants</a>
-	<br></br>
-	<form method="post">
+	<form method="post" action='/add_chose'>
 	{% csrf_token %}
+	<input type='hidden' name='key' value='{{group.id}}'>
 	{% for rgeach in rg %}
 		<div class = 'container, restvote'>
 			<a class='resttitle' href='{{rgeach.restaurant.url}}'>{{rgeach.restaurant.name}}</a>
