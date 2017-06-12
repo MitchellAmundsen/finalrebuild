@@ -292,3 +292,351 @@ Django version 1.9.9, using settings 'mysite.settings'
 Starting development server at http://0.0.0.0:8888/
 Quit the server with CONTROL-C.
 8
+[10/Jun/2017 07:20:11] "GET / HTTP/1.0" 302 0
+[10/Jun/2017 13:43:50] code 400, message Bad request syntax ('\x00')
+[10/Jun/2017 13:43:50] " " 400 -
+Not Found: /http:/httpheader.net/
+[10/Jun/2017 13:43:52] "GET http://httpheader.net/ HTTP/1.1" 404 1664
+[10/Jun/2017 13:44:04] code 400, message Bad request syntax ('\x04\x01\x00P\xa3\xac\x07\xa20\x00')
+[10/Jun/2017 13:44:04] 
+[10/Jun/2017 17:01:08] code 400, message Bad HTTP/0.9 request type ("\x03\x00\x00,'\xe0\x00\x00\x00\x00\x00Cookie:")
+[10/Jun/2017 17:01:08] 
+[10/Jun/2017 18:17:39] "GET /find HTTP/1.1" 200 838
+[10/Jun/2017 18:17:42] "POST /find HTTP/1.1" 302 0
+[10/Jun/2017 18:17:42] "GET /group_list/yamish/ HTTP/1.1" 200 908
+[10/Jun/2017 18:17:44] "GET /group_page/6/ HTTP/1.1" 200 5960
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 10, 2017 - 06:51:25
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[10/Jun/2017 18:23:54] "GET / HTTP/1.1" 200 823
+[10/Jun/2017 18:23:55] "GET /create HTTP/1.1" 200 1170
+[10/Jun/2017 18:24:20] "POST /create HTTP/1.1" 200 5891
+[10/Jun/2017 18:24:28] "POST /add_chose HTTP/1.1" 302 0
+[10/Jun/2017 18:24:28] "GET /group_page/9/ HTTP/1.1" 200 3799
+[10/Jun/2017 18:25:04] "GET / HTTP/1.1" 200 823
+[10/Jun/2017 18:25:06] "GET /create HTTP/1.1" 200 1170
+[10/Jun/2017 18:25:28] "POST /create HTTP/1.1" 200 5893
+[10/Jun/2017 18:25:40] "POST /add_chose HTTP/1.1" 302 0
+[10/Jun/2017 18:25:40] "GET /group_page/10/ HTTP/1.1" 200 3781
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 10, 2017 - 18:23:46
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[10/Jun/2017 18:33:40] "GET / HTTP/1.1" 200 823
+[10/Jun/2017 18:33:41] "GET /create HTTP/1.1" 200 1170
+[10/Jun/2017 18:33:56] "POST /create HTTP/1.1" 200 6060
+[10/Jun/2017 18:34:03] "POST /add_chose HTTP/1.1" 302 0
+[10/Jun/2017 18:34:04] "GET /group_page/11/ HTTP/1.1" 200 3902
+[10/Jun/2017 18:34:22] "GET / HTTP/1.1" 200 823
+[10/Jun/2017 18:34:24] "GET /create HTTP/1.1" 200 1170
+Internal Server Error: /create
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/ratelimit/decorators.py", line 30, in _wrapped
+    return fn(*args, **kw)
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/auth/decorators.py", line 23, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/ubuntu/finalrebuild/foodvote/views.py", line 124, in create_group
+    businesses = create_restaurant(search, data['location'], NewGroup, request)
+  File "/home/ubuntu/finalrebuild/foodvote/views.py", line 92, in create_restaurant
+    restaurant = savedrests
+NameError: global name 'savedrests' is not defined
+[10/Jun/2017 18:34:40] "POST /create HTTP/1.1" 500 80574
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 10, 2017 - 18:33:35
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[10/Jun/2017 18:36:10] "GET /create HTTP/1.1" 200 1170
+Internal Server Error: /create
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/ratelimit/decorators.py", line 30, in _wrapped
+    return fn(*args, **kw)
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/auth/decorators.py", line 23, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/ubuntu/finalrebuild/foodvote/views.py", line 125, in create_group
+    businesses = create_restaurant(search, data['location'], NewGroup, request)
+  File "/home/ubuntu/finalrebuild/foodvote/views.py", line 92, in create_restaurant
+    Restuarant.objects.get(hash_field=hashstring)
+NameError: global name 'Restuarant' is not defined
+[10/Jun/2017 18:36:23] "POST /create HTTP/1.1" 500 80594
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 10, 2017 - 18:36:07
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+Internal Server Error: /create
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/ratelimit/decorators.py", line 30, in _wrapped
+    return fn(*args, **kw)
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/auth/decorators.py", line 23, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/ubuntu/finalrebuild/foodvote/views.py", line 125, in create_group
+    businesses = create_restaurant(search, data['location'], NewGroup, request)
+  File "/home/ubuntu/finalrebuild/foodvote/views.py", line 93, in create_restaurant
+    restaurant = savedrests
+NameError: global name 'savedrests' is not defined
+[10/Jun/2017 18:36:47] "POST /create HTTP/1.1" 500 80606
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 10, 2017 - 18:36:42
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[10/Jun/2017 18:37:10] "POST /create HTTP/1.1" 200 6060
+[10/Jun/2017 18:37:37] "POST /add_chose HTTP/1.1" 302 0
+[10/Jun/2017 18:37:38] "GET /group_page/15/ HTTP/1.1" 200 3868
+[10/Jun/2017 18:37:52] "GET /add_rest/15 HTTP/1.1" 301 0
+[10/Jun/2017 18:37:52] "GET /add_rest/15/ HTTP/1.1" 200 888
+[10/Jun/2017 18:37:55] "POST /add_rest/15/ HTTP/1.1" 200 6060
+[10/Jun/2017 18:38:03] "POST /add_chose HTTP/1.1" 302 0
+[10/Jun/2017 18:38:03] "GET /group_page/15/ HTTP/1.1" 200 6973
+[10/Jun/2017 18:38:24] "GET / HTTP/1.1" 302 0
+[10/Jun/2017 18:38:24] "GET /login/?next=/ HTTP/1.1" 200 1561
+[10/Jun/2017 18:38:24] "GET /static/css/login.css HTTP/1.1" 404 1661
+[10/Jun/2017 18:38:28] "GET /registration/ HTTP/1.1" 200 2051
+[10/Jun/2017 18:38:28] "GET /static/css/login.css HTTP/1.1" 404 1661
+[10/Jun/2017 18:38:39] "POST /registration/ HTTP/1.1" 302 0
+[10/Jun/2017 18:38:40] "GET /login/ HTTP/1.1" 200 1561
+[10/Jun/2017 18:38:40] "GET /static/css/login.css HTTP/1.1" 404 1661
+[10/Jun/2017 18:38:44] "POST /login/ HTTP/1.1" 302 0
+[10/Jun/2017 18:38:44] "GET / HTTP/1.1" 200 823
+[10/Jun/2017 18:38:57] "GET /create HTTP/1.1" 200 1170
+[10/Jun/2017 18:39:13] "POST /create HTTP/1.1" 200 5886
+[10/Jun/2017 18:39:27] "POST /add_chose HTTP/1.1" 302 0
+[10/Jun/2017 18:39:27] "GET /group_page/1/ HTTP/1.1" 200 5786
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 10, 2017 - 18:37:07
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+15
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 10, 2017 - 19:15:41
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[10/Jun/2017 19:15:46] "GET /group_page/1/ HTTP/1.1" 200 5832
+[10/Jun/2017 19:17:20] "GET /group_page/1/ HTTP/1.1" 200 5834
+[10/Jun/2017 19:17:49] "GET /group_page/1/ HTTP/1.1" 200 5833
+[10/Jun/2017 19:17:50] "GET /group_page/1/ HTTP/1.1" 200 5833
+[10/Jun/2017 19:18:18] "GET /group_page/1/ HTTP/1.1" 200 5833
+[10/Jun/2017 19:18:19] "GET / HTTP/1.1" 200 870
+[10/Jun/2017 19:18:30] "GET / HTTP/1.1" 302 0
+[10/Jun/2017 19:18:30] "GET /login/?next=/ HTTP/1.1" 200 1561
+[10/Jun/2017 19:18:31] "GET /static/css/login.css HTTP/1.1" 404 1661
+[10/Jun/2017 19:18:35] "POST /login/ HTTP/1.1" 302 0
+[10/Jun/2017 19:18:35] "GET / HTTP/1.1" 200 870
+[10/Jun/2017 19:18:35] "GET /static/css/stylesheet.css HTTP/1.1" 200 1865
+[10/Jun/2017 19:18:48] "GET /static/css/stylesheet.css HTTP/1.1" 304 0
+[10/Jun/2017 19:18:49] "GET /static/css/stylesheet.css HTTP/1.1" 304 0
+[10/Jun/2017 19:18:57] "GET /static/css/stylesheet.css HTTP/1.1" 304 0
+[10/Jun/2017 19:19:04] "GET / HTTP/1.1" 200 870
+[10/Jun/2017 19:19:05] "GET / HTTP/1.1" 200 870
+[10/Jun/2017 19:19:06] "GET /find HTTP/1.1" 200 885
+[10/Jun/2017 19:19:08] "GET /find HTTP/1.1" 200 885
+[10/Jun/2017 19:22:50] "GET /find HTTP/1.1" 200 885
+[10/Jun/2017 19:22:50] "GET /static/css/stylesheet.css HTTP/1.1" 200 1865
+[10/Jun/2017 19:23:10] "GET / HTTP/1.1" 200 870
+[10/Jun/2017 19:23:10] "GET /static/css/stylesheet.css HTTP/1.1" 200 1865
+[10/Jun/2017 19:24:06] "GET / HTTP/1.1" 200 870
+[10/Jun/2017 19:24:06] "GET /static/css/stylesheet.css HTTP/1.1" 200 1865
+[10/Jun/2017 19:24:08] "GET / HTTP/1.1" 200 870
+[10/Jun/2017 19:24:08] "GET /static/css/stylesheet.css HTTP/1.1" 200 1865
+[10/Jun/2017 23:40:31] "GET /logout/ HTTP/1.1" 200 625
+[10/Jun/2017 23:40:34] "GET /login/ HTTP/1.1" 200 1561
+[10/Jun/2017 23:40:34] "GET /static/css/login.css HTTP/1.1" 404 1661
+[10/Jun/2017 23:40:41] "GET /static/css/login.css HTTP/1.1" 404 1661
+[10/Jun/2017 23:45:16] "GET /static/css/login.css HTTP/1.1" 404 1661
+[10/Jun/2017 23:45:27] "GET /static/css/login.css HTTP/1.1" 404 1661
+[10/Jun/2017 23:45:49] "GET /static/css/login.css HTTP/1.1" 200 550
+[10/Jun/2017 23:45:52] "GET /login/ HTTP/1.1" 200 1561
+[10/Jun/2017 23:45:52] "GET /static/css/login.css HTTP/1.1" 304 0
+[10/Jun/2017 23:45:54] "GET /login/ HTTP/1.1" 200 1561
+[10/Jun/2017 23:45:54] "GET /static/css/login.css HTTP/1.1" 304 0
+[10/Jun/2017 23:46:09] "GET /registration/ HTTP/1.1" 200 2051
+[10/Jun/2017 23:46:10] "GET /static/css/login.css HTTP/1.1" 304 0
+[10/Jun/2017 23:46:57] "GET /login/ HTTP/1.1" 200 1561
+[10/Jun/2017 23:46:57] "GET /static/css/login.css HTTP/1.1" 200 547
+[10/Jun/2017 23:46:58] "GET /login/ HTTP/1.1" 200 1561
+[10/Jun/2017 23:46:59] "GET /static/css/login.css HTTP/1.1" 304 0
+[10/Jun/2017 23:47:05] "GET /static/css/login.css HTTP/1.1" 304 0
+[10/Jun/2017 23:47:40] "GET /login/ HTTP/1.1" 200 1561
+[10/Jun/2017 23:47:40] "GET /static/css/login.css HTTP/1.1" 200 543
+[11/Jun/2017 00:33:33] "GET /login/ HTTP/1.1" 200 1561
+[11/Jun/2017 00:33:34] "GET /static/css/login.css HTTP/1.1" 304 0
+[11/Jun/2017 01:42:08] "POST /login/ HTTP/1.1" 302 0
+[11/Jun/2017 01:42:08] "GET / HTTP/1.1" 200 870
+[11/Jun/2017 01:43:13] "GET /my_list HTTP/1.1" 200 956
+[11/Jun/2017 01:43:15] "GET /group_page/1/ HTTP/1.1" 200 5952
+[11/Jun/2017 01:43:18] "GET /my_list HTTP/1.1" 200 956
+[11/Jun/2017 01:43:31] "GET / HTTP/1.1" 200 870
+[11/Jun/2017 01:44:42] "GET / HTTP/1.1" 200 870
+[11/Jun/2017 01:45:05] "GET / HTTP/1.1" 200 870
+[11/Jun/2017 01:45:05] "GET /static/css/stylesheet.css HTTP/1.1" 200 2023
+[11/Jun/2017 01:45:13] "GET / HTTP/1.1" 200 870
+[11/Jun/2017 01:45:14] "GET /static/css/stylesheet.css HTTP/1.1" 304 0
+[11/Jun/2017 01:46:42] "GET /o/applications HTTP/1.1" 301 0
+[11/Jun/2017 01:46:42] "GET /o/applications/ HTTP/1.1" 200 1435
+Not Found: /o
+[11/Jun/2017 01:46:45] "GET /o HTTP/1.1" 404 4859
+[11/Jun/2017 01:46:49] "GET /o/applications/ HTTP/1.1" 200 1435
+Not Found: /o/
+[11/Jun/2017 01:46:53] "GET /o/ HTTP/1.1" 404 6701
+[11/Jun/2017 01:47:13] "GET /o/applications/ HTTP/1.1" 200 1435
+[11/Jun/2017 01:47:15] "GET /o/applications/register/ HTTP/1.1" 200 5116
+[11/Jun/2017 01:48:50] "GET / HTTP/1.1" 200 920
+[11/Jun/2017 01:48:50] "GET /static/css/stylesheet.css HTTP/1.1" 304 0
+[11/Jun/2017 01:49:02] "GET / HTTP/1.1" 200 920
+[11/Jun/2017 01:49:02] "GET /static/css/stylesheet.css HTTP/1.1" 200 2023
+[11/Jun/2017 01:49:03] "GET / HTTP/1.1" 200 920
+[11/Jun/2017 01:49:03] "GET /static/css/stylesheet.css HTTP/1.1" 200 2023
+[11/Jun/2017 01:49:43] "GET / HTTP/1.1" 200 920
+[11/Jun/2017 01:49:43] "GET /static/css/stylesheet.css HTTP/1.1" 200 2023
+[11/Jun/2017 01:50:10] "GET / HTTP/1.1" 200 920
+[11/Jun/2017 01:50:11] "GET /static/css/stylesheet.css HTTP/1.1" 200 2176
+[11/Jun/2017 01:50:44] "GET / HTTP/1.1" 200 920
+[11/Jun/2017 01:50:44] "GET /static/css/stylesheet.css HTTP/1.1" 200 2176
+[11/Jun/2017 01:50:47] "GET /o/applications/ HTTP/1.1" 200 1435
+[11/Jun/2017 01:55:18] "GET /o/applications/register/ HTTP/1.1" 200 5116
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 10, 2017 - 23:40:22
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[11/Jun/2017 02:19:28] "GET /api/restaurant/ HTTP/1.1" 403 0
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 11, 2017 - 02:19:21
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 11, 2017 - 02:22:27
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[11/Jun/2017 02:25:44] "GET /api/restaurant/ HTTP/1.1" 403 0
+[11/Jun/2017 02:25:50] "GET / HTTP/1.1" 302 0
+[11/Jun/2017 02:25:50] "GET /login/?next=/ HTTP/1.1" 200 1561
+[11/Jun/2017 02:25:51] "GET /static/css/login.css HTTP/1.1" 304 0
+[11/Jun/2017 02:25:57] "POST /login/ HTTP/1.1" 200 1623
+[11/Jun/2017 02:26:00] "GET /registration/ HTTP/1.1" 200 2051
+[11/Jun/2017 02:26:14] "POST /registration/ HTTP/1.1" 302 0
+[11/Jun/2017 02:26:14] "GET /login/ HTTP/1.1" 200 1561
+[11/Jun/2017 02:26:18] "POST /login/ HTTP/1.1" 200 1623
+[11/Jun/2017 02:26:47] "GET /registration/ HTTP/1.1" 200 2051
+[11/Jun/2017 02:26:56] "POST /registration/ HTTP/1.1" 200 2122
+[11/Jun/2017 02:27:10] "POST /registration/ HTTP/1.1" 302 0
+[11/Jun/2017 02:27:10] "GET /login/ HTTP/1.1" 200 1561
+[11/Jun/2017 02:27:14] "POST /login/ HTTP/1.1" 200 1623
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 11, 2017 - 02:23:40
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+auth unsuccessful
+auth unsuccessful
+auth unsuccessful
+[11/Jun/2017 02:27:30] "POST /login/ HTTP/1.1" 302 0
+[11/Jun/2017 02:27:30] "GET / HTTP/1.1" 200 920
+[11/Jun/2017 02:27:31] "GET /static/css/stylesheet.css HTTP/1.1" 304 0
+[11/Jun/2017 02:27:33] "GET /logout/ HTTP/1.1" 200 675
+[11/Jun/2017 02:27:35] "GET /login/ HTTP/1.1" 200 1561
+[11/Jun/2017 02:27:38] "POST /login/ HTTP/1.1" 302 0
+[11/Jun/2017 02:27:39] "GET / HTTP/1.1" 200 920
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 11, 2017 - 02:27:28
+Django version 1.9.9, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8888/
+Quit the server with CONTROL-C.
+[11/Jun/2017 02:28:20] "GET / HTTP/1.1" 200 920
+[11/Jun/2017 02:31:08] "GET /o/applications/ HTTP/1.1" 200 1435
+[11/Jun/2017 02:31:13] "GET /o/applications/register/ HTTP/1.1" 200 5116
+[11/Jun/2017 02:33:25] "POST /o/applications/register/ HTTP/1.1" 302 0
+[11/Jun/2017 02:33:25] "GET /o/applications/1/ HTTP/1.1" 200 2541
+[11/Jun/2017 02:36:27] "GET /o/authorize?state=random_state_string&response_type=code&client_id=e0sn1z8y3rj6qtMEPXBKJn3fUonWbxdI8SniDhKq HTTP/1.1" 301 0
+[11/Jun/2017 02:36:27] "GET /o/authorize/?state=random_state_string&response_type=code&client_id=e0sn1z8y3rj6qtMEPXBKJn3fUonWbxdI8SniDhKq HTTP/1.1" 200 3077
+[11/Jun/2017 02:36:31] "POST /o/authorize/?state=random_state_string&response_type=code&client_id=e0sn1z8y3rj6qtMEPXBKJn3fUonWbxdI8SniDhKq HTTP/1.1" 302 0
+[11/Jun/2017 02:36:37] "GET /o/authorize/?state=random_state_string&response_type=code&client_id=e0sn1z8y3rj6qtMEPXBKJn3fUonWbxdI8SniDhKq HTTP/1.1" 200 3077
+[11/Jun/2017 02:36:39] "POST /o/authorize/?state=random_state_string&response_type=code&client_id=e0sn1z8y3rj6qtMEPXBKJn3fUonWbxdI8SniDhKq HTTP/1.1" 302 0
+[11/Jun/2017 02:39:54] "GET /o/token HTTP/1.1" 301 0
+Method Not Allowed (GET): /o/token/
+[11/Jun/2017 02:39:54] "GET /o/token/ HTTP/1.1" 405 0
+[11/Jun/2017 02:42:00] "POST /o/token/ HTTP/1.1" 401 32
+[11/Jun/2017 02:42:04] "POST /o/token/ HTTP/1.1" 401 32
+[11/Jun/2017 02:45:29] "POST /o/token/ HTTP/1.1" 401 32
+[11/Jun/2017 02:46:50] "POST /o/token/ HTTP/1.1" 400 91
+[11/Jun/2017 02:47:21] "GET /o/applications/ HTTP/1.1" 200 1537
+[11/Jun/2017 02:47:25] "GET /o/applications/register/ HTTP/1.1" 200 5116
+[11/Jun/2017 02:52:38] "POST /o/applications/register/ HTTP/1.1" 302 0
+[11/Jun/2017 02:52:38] "GET /o/applications/2/ HTTP/1.1" 200 2469
+[11/Jun/2017 02:52:45] "GET /o/applications/ HTTP/1.1" 200 1621
+[11/Jun/2017 02:52:50] "GET /o/applications/2/ HTTP/1.1" 200 2469
+[11/Jun/2017 02:54:27] "POST /o/token/ HTTP/1.1" 200 169
+[11/Jun/2017 02:58:44] "GET /api/restaurant/?access_token=gwTlQXKwMfDkAsKYMtWKrsSozIwqhz HTTP/1.1" 200 13090
+[11/Jun/2017 02:58:44] "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3399
+[11/Jun/2017 02:58:44] "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+[11/Jun/2017 02:58:44] "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1132
+[11/Jun/2017 02:58:44] "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 2876
+[11/Jun/2017 02:58:44] "GET /static/rest_framework/js/jquery-1.12.4.min.js HTTP/1.1" 200 97163
+[11/Jun/2017 02:58:44] "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1735
+[11/Jun/2017 02:58:44] "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 37045
+[11/Jun/2017 02:58:44] "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+[11/Jun/2017 02:58:44] "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1262
+[11/Jun/2017 02:58:44] "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121200
+[11/Jun/2017 02:58:44] "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+[11/Jun/2017 03:14:42] "GET / HTTP/1.1" 200 920
+[11/Jun/2017 03:14:42] "GET /static/css/stylesheet.css HTTP/1.1" 304 0
+[11/Jun/2017 03:14:45] "GET /create HTTP/1.1" 200 1267
+[11/Jun/2017 03:15:00] "POST /create HTTP/1.1" 200 6036
+[11/Jun/2017 03:15:07] "POST /add_chose HTTP/1.1" 302 0
+[11/Jun/2017 03:15:08] "GET /group_page/2/ HTTP/1.1" 200 2963
+[11/Jun/2017 03:15:10] "GET /add_rest/2 HTTP/1.1" 301 0
+[11/Jun/2017 03:15:10] "GET /add_rest/2/ HTTP/1.1" 200 983
+[11/Jun/2017 03:15:16] "POST /add_rest/2/ HTTP/1.1" 200 6238
+[11/Jun/2017 03:15:30] "POST /add_chose HTTP/1.1" 302 0
+[11/Jun/2017 03:15:30] "GET /group_page/2/ HTTP/1.1" 200 5071
+[11/Jun/2017 03:15:46] "POST /group_page/2/ HTTP/1.1" 302 0
+[11/Jun/2017 03:15:46] "GET /result/2/ HTTP/1.1" 200 1411
+[11/Jun/2017 03:16:03] "GET /group_page/2/ HTTP/1.1" 200 5144
+[11/Jun/2017 03:16:09] "POST /group_page/2/ HTTP/1.1" 302 0
+[11/Jun/2017 03:16:09] "GET /result/2/ HTTP/1.1" 200 1411
+[11/Jun/2017 03:16:13] "GET /my_list HTTP/1.1" 200 1335
+[11/Jun/2017 03:16:18] "GET /group_page/1/ HTTP/1.1" 200 6002

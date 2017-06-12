@@ -4,3 +4,4 @@ env
 /static
 .DS_Store
 settings.py
+nohup.out

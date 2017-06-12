@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('foodvote.urls')),
+    url(r'^finalrebuild/', include('foodvote.urls')),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^logout/$', auth_views.logout, {'template_name': 'foodvote/logout.html'}, name='logout'),
 ]

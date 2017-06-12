@@ -1,7 +1,7 @@
 {% extends 'foodvote/base.html' %}
 
 {% block content %}
-        <a href="find">
+        <a href="{% url 'find' %}">
                 <div class="container" id="finddiv">
                         <h3> Find Group </h3>
                 </div>
@@ -9,7 +9,7 @@
 
         <br></br>
 
-        <a href="create">
+        <a href="{% url 'create' %}">
                 <div class="container" id="makediv">
                         <h3> Make Group </h3>
                 </div>

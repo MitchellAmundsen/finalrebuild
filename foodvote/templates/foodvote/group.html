@@ -3,8 +3,12 @@
 {% block content %}
 	<p class='group_page_title'>{{group.name}}'s Group Page</p>
 	<br></br>	
-	<a href='/add_rest/{{group.id}}'>Add Restaurants</a>
+	<a href='{% url "add_rest" pk=group.id %}'>Add Restaurants</a>
 	<br></br>
+	{% if message %}
+	<p>{{message}}</p>
+	{% endif %}
+	<h3><a href='{% url "result" pk=group.id%}'> Results </a></h3>
 	<form method="post">
 	{% csrf_token %}
 	{% for rgeach in rg %}

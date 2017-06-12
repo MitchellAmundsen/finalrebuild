@@ -9,7 +9,7 @@
 			<div class="panel-body">
 				<h1>Login</h1>
 				<div class="loginHolder">
-					<form id="loginForm" method="POST" action="/login/">
+					<form id="loginForm" method="POST" action="{% url 'login' %}">
             {% csrf_token %}
 						<div class="form-group">
 							<div class="input-group">

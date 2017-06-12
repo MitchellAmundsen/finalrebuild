@@ -1,0 +1,45 @@
+main {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+main img {
+	width: 150px;
+  margin: 0 auto;
+}
+
+main h1 {
+	font-family: "Roboto", sans-serif;
+	margin-top: 5px;
+	margin-bottom: 25px;
+}
+
+main form {
+	display: flex;
+	flex-direction: column;
+}
+
+main .loginHolder {
+	text-align: left;
+}
+
+main .buttonHolder {
+	margin-top: 15px;
+	display: flex;
+}
+
+.buttonHolder button {
+	flex: 1 0 0;
+	border-radius: 0;
+}
+
+#errorauth {
+	padding-top: 10px;
+	font-size:16px;
+}
+#reset {
+	font-size: 16px;
+}

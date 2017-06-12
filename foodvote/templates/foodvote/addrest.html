@@ -5,7 +5,7 @@
 	<p class='group_page_title'>{{group.name}}'s Add Restaurant's Page</p>
 	<h4> Check the following restaurants you would like to add to the vote </h4>
 	<br></br>	
-	<form method="post" action='/add_chose'>
+	<form method="post" action='{% url "add_chose" %}'>
 	{% csrf_token %}
 	<input type='hidden' name='key' value='{{group.id}}'>
 	{% for rgeach in rg %}
