@@ -1,5 +1,5 @@
 *.pyc
-/static/yelp_config_secret.json
+static/yelp_config_secret.json
 __pycache__
 env
 .DS_Store
